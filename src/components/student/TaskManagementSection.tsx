@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Task, TaskStats } from '../../types';
 import toast from 'react-hot-toast';
 import TaskModal from './TaskModal';
-// import { webSocketService } from '../../services/websocket';
+import { webSocketService } from '../../services/websocket';
 
 const TaskManagementSection: React.FC = () => {
   const { user } = useAuth();
@@ -24,7 +24,7 @@ const TaskManagementSection: React.FC = () => {
       fetchStats();
       
       // Connect to WebSocket for real-time task notifications
-      // webSocketService.connect(user.id);
+      webSocketService.connect(user.id);
       
       // Listen for task reminder notifications
       const handleTaskNotification = (notification: any) => {
@@ -71,11 +71,11 @@ const TaskManagementSection: React.FC = () => {
         }
       };
       
-      // webSocketService.onNotification(handleTaskNotification);
+      webSocketService.onNotification(handleTaskNotification);
       
-      // return () => {
-      //   webSocketService.removeNotificationCallback(handleTaskNotification);
-      // };
+      return () => {
+        webSocketService.removeNotificationCallback(handleTaskNotification);
+      };
     }
   }, [user]);
 

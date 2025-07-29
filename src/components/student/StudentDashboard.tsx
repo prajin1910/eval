@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { MessageCircle, BookOpen, Calendar, Brain, Users, Target, LogOut, CheckSquare } from 'lucide-react';
-// import TaskReminderNotification from '../common/TaskReminderNotification';
+import TaskReminderNotification from '../common/TaskReminderNotification';
 import ChatSection from '../common/ChatSection';
 import AssessmentSection from './AssessmentSection';
 import AIRoadmapSection from './AIRoadmapSection';
@@ -130,7 +130,7 @@ const StudentDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* <TaskReminderNotification /> */}
+      <TaskReminderNotification />
       
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg">

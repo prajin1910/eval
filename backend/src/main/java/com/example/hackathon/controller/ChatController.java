@@ -96,6 +96,7 @@ public class ChatController {
         
         chatConversationRepository.save(conversation);
     }
+    
     @GetMapping("/messages/{userId1}/{userId2}")
     public ResponseEntity<List<ChatMessage>> getMessages(
             @PathVariable String userId1,

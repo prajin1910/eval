@@ -72,8 +72,10 @@ public class TaskReminderService {
             // Send in-app notification with more detailed timing
             notificationService.sendTaskReminderNotification(student.getId(), task, hoursUntilDue, minutesUntilDue);
             
+            System.out.println("Task reminder sent for task: " + task.getTitle() + " to user: " + student.getUsername());
         } catch (Exception e) {
             System.err.println("Failed to send task reminder for task: " + task.getId() + ", error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

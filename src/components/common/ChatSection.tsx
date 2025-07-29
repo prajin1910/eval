@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Search, User, MessageCircle, LogOut, Circle, CheckCheck } from 'lucide-react';
 import { chatAPI } from '../../services/api';
-// import { webSocketService } from '../../services/websocket';
+import { webSocketService } from '../../services/websocket';
 import { useAuth } from '../../contexts/AuthContext';
 import { ChatMessage, User as UserType } from '../../types';
 import toast from 'react-hot-toast';
@@ -42,7 +42,7 @@ const ChatSection: React.FC = () => {
       loadConversations();
       
       // Connect to WebSocket
-      // webSocketService.connect(user.id);
+      webSocketService.connect(user.id);
       
       // Listen for new messages
       const handleNewMessage = (message: ChatMessage) => {
@@ -57,7 +57,7 @@ const ChatSection: React.FC = () => {
         loadConversations();
       };
       
-      // webSocketService.onMessage(handleNewMessage);
+      webSocketService.onMessage(handleNewMessage);
       
       // Refresh conversations every 30 seconds to keep them updated
       const intervalId = setInterval(() => {
@@ -65,7 +65,7 @@ const ChatSection: React.FC = () => {
       }, 30000);
       
       return () => {
-        // webSocketService.removeMessageCallback(handleNewMessage);
+        webSocketService.removeMessageCallback(handleNewMessage);
         clearInterval(intervalId);
       };
     }
@@ -125,7 +125,7 @@ const ChatSection: React.FC = () => {
       });
 
       // Send via WebSocket for real-time delivery
-      // webSocketService.sendMessage(user!.id, selectedUser.id, newMessage.trim());
+      webSocketService.sendMessage(user!.id, selectedUser.id, newMessage.trim());
       setNewMessage('');
       
       // Refresh messages
